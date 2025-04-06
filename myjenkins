@@ -1,13 +1,20 @@
-pipeline{
+pipeline {
     agent any
 
-    stages{
-        stage('compile'){
-              steps{
-                  echo 'compile in progress'
-                  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll:false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report'])
-                }
-              }
-      }
-  }
-      
+    stages {
+        stage('Compile') {
+            steps {
+                echo 'Compile in progress'
+                
+                // Assuming index.html is generated in the 'html_reports' directory after the build process
+                // If you're using another directory or if the file is elsewhere, adjust accordingly
+                publishHTML([allowMissing: false, 
+                             alwaysLinkToLastBuild: false, 
+                             keepAll: false, 
+                             reportDir: 'html_reports',  // Specify the directory where index.html is located
+                             reportFiles: 'index.html',  // The HTML file to be published
+                             reportName: 'HTML_Report'])  // Name of the report displayed in Jenkins
+            }
+        }
+    }
+}
