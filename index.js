@@ -1,1 +1,1 @@
-echo ("This is Pulled from git repo ");
+echo ('This is Pulled from git repo');
