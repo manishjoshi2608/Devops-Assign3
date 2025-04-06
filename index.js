@@ -1,1 +1,1 @@
-console.log('This is Pulled from git repo);
+console.log('This is Pulled from git repo');
