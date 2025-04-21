@@ -1,19 +1,22 @@
 pipeline {
-    agent any
+    agent any 
+
     stages {
-        stage('---clean---') {
+        stage('Git Clone Repository') {
             steps {
-                sh "mvn clean"
+                git branch: 'main', url: 'https://github.com/aksyntax/Jenkinsfile.git'
             }
         }
-        stage('--test--') {
+        stage('Publish HTML') {
             steps {
-                sh "mvn test"
-            }
-        }
-        stage('--package--') {
-            steps {
-                sh "mvn package"
+                publishHTML(target: [
+                    reportName           : 'HTML Page',
+                    reportDir            : '.',
+                    reportFiles          : 'index.html',
+                    keepAll              : true,
+                    alwaysLinkToLastBuild: true,
+                    allowMissing         : false
+                ])
             }
         }
     }
